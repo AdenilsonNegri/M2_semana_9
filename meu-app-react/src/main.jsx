@@ -2,6 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
+import ListagemPosts from './ListagemPosts.jsx'
 
 
 const posts = [
@@ -32,7 +33,7 @@ localStorage.setItem("posts", JSON.stringify(posts));
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+    <ListagemPosts />
   </StrictMode>,
 )
 

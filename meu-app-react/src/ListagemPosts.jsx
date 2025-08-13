@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Post from "./Post";
+import "./ListagemPosts.css";
 
 const ListagemPosts = () => {
   const [posts, setPosts] = useState([]);
@@ -16,7 +17,7 @@ const ListagemPosts = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-6">
+    <div className="lista-posts">
       {posts.length === 0 ? (
         <p className="text-center text-gray-600">Nenhum post encontrado.</p>
       ) : (
