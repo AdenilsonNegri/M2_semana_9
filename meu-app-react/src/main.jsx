@@ -4,9 +4,9 @@ import './index.css'
 import App from './App.jsx'
 import ListagemPosts from './ListagemPosts.jsx'
 
-
+/*
 const posts = [
-  {
+  { 
     id: 1,
     titulo: "Inteligência Artificial no Dia a Dia",
     descricao:
@@ -24,16 +24,16 @@ const posts = [
     data: "2025-07-10",
     tipo: "Notícia",
   }
-];
+]; 
 
 if (!localStorage.getItem("posts")) {
 localStorage.setItem("posts", JSON.stringify(posts));
-}
+} */
 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <ListagemPosts />
+    <App />
   </StrictMode>,
 )
 

@@ -59,12 +59,13 @@ function App() {
     if (!validarFormulario()) return;
 
     const novoPost = {
-      titulo,
-      descricao,
-      imagemUrl,
-      dataPublicacao,
-      categoria,
-    };
+      id: Date.now().toString() + Math.random().toString(36).substring(2, 8), // id único
+    tipo: categoria,
+    titulo,
+    descricao,
+    capa: imagemUrl,
+    data: dataPublicacao,
+  };
 
     const postsAtuais = JSON.parse(localStorage.getItem("posts") || "[]");
     const postsAtualizados = [...postsAtuais, novoPost];

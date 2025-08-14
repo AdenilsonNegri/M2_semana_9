@@ -1,7 +1,7 @@
 import React from "react";
 import "./ListagemPosts.css";
 
-const Post = ({ tipo, titulo, descricao, data, capa, onDelete }) => {
+const Post = ({ id, tipo, titulo, descricao, data, capa, onDelete }) => {
   // Formata a data recebida (string no formato DD/MM/AAAA ou ISO)
   let dataFormatada = data;
   const dataObj = new Date(data);
@@ -23,7 +23,7 @@ const Post = ({ tipo, titulo, descricao, data, capa, onDelete }) => {
         <div className="card-footer">
           <p className="data">Publicado em: {dataFormatada}</p>
           {onDelete && (
-            <button className="excluir" onClick={onDelete}>
+            <button className="excluir" onClick={() => onDelete(id)}>
               Excluir
             </button>
           )}

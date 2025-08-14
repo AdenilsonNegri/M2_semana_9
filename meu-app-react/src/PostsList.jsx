@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import Post from "./Post";
 import "./ListagemPosts.css";
 
-const ListagemPosts = () => {
+const PostsList = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
+    // Busca os posts do localStorage
     const storedPosts = JSON.parse(localStorage.getItem("posts")) || [];
     setPosts(storedPosts);
   }, []);
@@ -22,20 +23,20 @@ const ListagemPosts = () => {
         <p className="text-center text-gray-600">Nenhum post encontrado.</p>
       ) : (
         posts.map((post) => (
-          <Post 
-          key={post.id} 
-          id={post.id}
-          tipo={post.tipo}
-          titulo={post.titulo}
-          descricao={post.descricao}
-          data={post.data}
-          capa={post.capa}
-          post={post} 
-          onDelete={handleDelete} />
+          <Post
+            key={post.id}
+            id={post.id}
+            tipo={post.tipo}
+            titulo={post.titulo}
+            descricao={post.descricao}
+            data={post.data}
+            capa={post.capa}
+            onDelete={handleDelete}
+          />
         ))
       )}
     </div>
   );
 };
 
-export default ListagemPosts;
+export default PostsList;
