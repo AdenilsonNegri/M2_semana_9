@@ -76,3 +76,24 @@
 .excluir:hover {
   text-decoration: underline;
 }
+
+.painel-contagem {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.painel-contagem p {
+  font-size: 1rem;
+  margin-bottom: 6px;
+}
+
+.painel-contagem ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.painel-contagem li {
+  font-size: 1rem;
+  margin: 3px 0;
+}

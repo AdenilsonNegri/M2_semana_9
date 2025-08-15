@@ -11,11 +11,19 @@ function App() {
   const [categoria, setCategoria] = useState("");
 
   const [totalPosts, setTotalPosts] = useState(0);
+  const [contagemCategorias, setContagemCategorias] = useState({});
 
   // Carregar total de posts do localStorage ao iniciar
   useEffect(() => {
     const postsSalvos = JSON.parse(localStorage.getItem("posts") || "[]");
     setTotalPosts(postsSalvos.length);
+
+    const categorias = postsSalvos.reduce((acc, post) => {
+      const tipo = post.tipo?.toLowerCase() || "outros";
+      acc[tipo] = (acc[tipo] || 0) + 1;
+      return acc;
+    }, {});
+    setContagemCategorias(categorias);
   }, []);
 
   const validarFormulario = () => {
@@ -72,6 +80,13 @@ function App() {
     localStorage.setItem("posts", JSON.stringify(postsAtualizados));
     setTotalPosts(postsAtualizados.length);
 
+    const categorias = postsAtualizados.reduce((acc, post) => {
+      const tipo = post.tipo?.toLowerCase() || "outros";
+      acc[tipo] = (acc[tipo] || 0) + 1;
+      return acc;
+    }, {});
+    setContagemCategorias(categorias);
+
     toast.success("Post salvo com sucesso!");
 
     // Limpa os campos
@@ -86,7 +101,16 @@ function App() {
     <div className="container">
       <h1>Painel de Gerenciamento</h1>
 
-      <p>Atualmente, você tem {totalPosts} posts cadastrados</p>
+      <p className="total-posts">
+        Atualmente, você tem <b>{totalPosts}</b> posts cadastrados
+      </p>
+      <div className="contagem-categorias">
+        {Object.keys(contagemCategorias).map((categoria) => (
+          <p key={categoria}>
+            <b>{categoria}:</b> <b>{contagemCategorias[categoria]}</b>
+          </p>
+        ))}
+      </div>
 
       <form onSubmit={handleSubmit} className="formulario">
         <label htmlFor="titulo">Título</label>

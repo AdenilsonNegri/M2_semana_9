@@ -16,8 +16,32 @@ const ListagemPosts = () => {
     localStorage.setItem("posts", JSON.stringify(filteredPosts));
   };
 
+  // Contagem por categoria
+  const counts = posts.reduce((acc, post) => {
+    const tipo = post.tipo?.toLowerCase() || "outros";
+    acc[tipo] = (acc[tipo] || 0) + 1;
+    return acc;
+  }, {});
+
+  const total = posts.length;
+
   return (
     <div className="lista-posts">
+      {/* Painel de contagem */}
+      <div className="painel-contagem">
+        <p>
+          Atualmente, você tem <strong>{total}</strong> posts cadastrados
+        </p>
+        <ul>
+          {Object.entries(counts).map(([tipo, qtd]) => (
+            <li key={tipo}>
+              <strong>{tipo.charAt(0).toUpperCase() + tipo.slice(1)}:</strong> {qtd}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+    {/* Lista de posts */}
       {posts.length === 0 ? (
         <p className="text-center text-gray-600">Nenhum post encontrado.</p>
       ) : (
